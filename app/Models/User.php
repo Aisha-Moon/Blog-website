@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    static public function getSingle($id){
+        return self::find($id);
+    }
+    static public function getRecordUser(){
+        return self::select('users.*')
+            ->where('is_admin',0)
+            ->where('is_delete',0)
+            ->orderBy('users.id','desc')
+            ->paginate(3);
+    }
+
 }
