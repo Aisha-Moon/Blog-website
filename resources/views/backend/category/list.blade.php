@@ -16,8 +16,8 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
-                Users List
-                <a href="{{ url('panel/user/add') }}" style="float:right;" class="btn btn-primary">Add New</a>
+                Category List
+                <a href="{{ url('panel/category/add') }}" style="float:right;" class="btn btn-primary">Add New</a>
             </h5>
 
 
@@ -28,10 +28,11 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Email Verified at</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Created Date</th>
+                  <th scope="col">Slug</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Meta Title</th>
+                  <th scope="col">Meta Description</th>
+                  <th scope="col">Meta Keywords</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -40,18 +41,21 @@
                 <tr>
                     <th scope="row">{{ $value->id }}</th>
                     <td>{{ $value->name }}</td>
-                    <td>{{ $value->email }}</td>
-                    <td>{{ !empty($value->email_verified_at) ? 'Yes' : 'No' }}</td>
+                    <td>{{ $value->slug }}</td>
+                    <td>{{ $value->title }}</td>
+                    <td>{{ $value->meta_title }}</td>
+                    <td>{{ $value->meta_description }}</td>
+                    <td>{{ $value->meta_keywords }}</td>
                     <td>{{ !empty($value->status) ? 'Active' : 'Inactive' }}</td>
                     <td>{{ date('d-m-Y H:i',strtotime($value->created_at)) }}</td>
                     <td>
-                        <a  href="{{ url('panel/user/edit/'.$value->id) }}" class="btn btn-success">Edit</a>
-                        <a onclick="return confirm('Are you sure want to delete?')" href="{{ url('panel/user/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
+                        <a  href="{{ url('panel/category/edit/'.$value->id) }}" class="btn btn-success">Edit</a>
+                        <a onclick="return confirm('Are you sure want to delete?')" href="{{ url('panel/category/delete/'.$value->id) }}" class="btn btn-danger">Delete</a>
                     </td>
                   </tr>
                 @empty
-                  <tr style="color:red;">
-                    <td colspan="100%">Record Not Found </td>
+                  <tr style="text-align: center">
+                    <td style="color:red;" colspan="100%">Record Not Found </td>
                   </tr>
 
                 @endforelse
